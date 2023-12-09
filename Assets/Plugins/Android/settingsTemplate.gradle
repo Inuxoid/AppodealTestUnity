@@ -1,0 +1,30 @@
+pluginManagement {
+    repositories {
+        **ARTIFACTORYREPOSITORY**
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+include ':launcher', ':unityLibrary'
+**INCLUDES**
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        **ARTIFACTORYREPOSITORY**
+        google()
+        mavenCentral()
+// Android Resolver Repos Start
+        def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
+        maven {
+            url "https://artifactory.appodeal.com/appodeal" // Assets/Appodeal/Editor/Dependencies/AdColonyDependencies.xml:14, Assets/Appodeal/Editor/Dependencies/AdjustDependencies.xml:17, Assets/Appodeal/Editor/Dependencies/AppLovinDependencies.xml:13, Assets/Appodeal/Editor/Dependencies/AppodealDependencies.xml:20, Assets/Appodeal/Editor/Dependencies/AppsFlyerDependencies.xml:16, Assets/Appodeal/Editor/Dependencies/BidMachineDependencies.xml:17, Assets/Appodeal/Editor/Dependencies/FirebaseDependencies.xml:15, Assets/Appodeal/Editor/Dependencies/GoogleAdMobDependencies.xml:13, Assets/Appodeal/Editor/Dependencies/IABDependencies.xml:12, Assets/Appodeal/Editor/Dependencies/IronSourceDependencies.xml:14, Assets/Appodeal/Editor/Dependencies/MetaAudienceNetworkDependencies.xml:14, Assets/Appodeal/Editor/Dependencies/MetaDependencies.xml:14, Assets/Appodeal/Editor/Dependencies/MyTargetDependencies.xml:15, Assets/Appodeal/Editor/Dependencies/SentryAnalyticsDependencies.xml:15, Assets/Appodeal/Editor/Dependencies/StackAnalyticsDependencies.xml:14, Assets/Appodeal/Editor/Dependencies/UnityDependencies.xml:12, Assets/Appodeal/Editor/Dependencies/VungleDependencies.xml:16, Assets/Appodeal/Editor/Dependencies/YandexDependencies.xml:13
+        }
+        mavenLocal()
+// Android Resolver Repos End
+        flatDir {
+            dirs "${project(':unityLibrary').projectDir}/libs"
+        }
+    }
+}
